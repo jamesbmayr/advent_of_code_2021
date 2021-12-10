@@ -86,4 +86,4 @@ def get_minimum_triangle_fuel_cost(numbers):
 
 
 
-print(get_minimum_triangle_fuel_cost(data))
+# print(get_minimum_triangle_fuel_cost(data))

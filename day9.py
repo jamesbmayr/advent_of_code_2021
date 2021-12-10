@@ -44,7 +44,7 @@ def get_risk_level(data):
 	for n in low_points:
 		total_sum += (n + 1)
 
-	return {"sum": total_sum, "low_points": low_points}
+	return {'sum': total_sum, 'low_points': low_points}
 
 
 
@@ -93,7 +93,7 @@ def convert_data_better(rows):
 		cells = list(row)
 		x = 0
 		for cell in cells:
-			new_row.append({"topography": int(cell), "x": x, "y": y, "is_boundary": False, "is_low_point": False})
+			new_row.append({'topography': int(cell), 'x': x, 'y': y, 'is_boundary': False, 'is_low_point': False})
 			x += 1
 
 		y += 1
@@ -112,31 +112,31 @@ def identify_low_points_and_boundaries(grid):
 
 	for x in range(width):
 		for y in range(height):
-			this_number = grid[y][x]["topography"]
+			this_number = grid[y][x]['topography']
 
 			# boundary?
 			if this_number == 9:
-				grid[y][x]["is_boundary"] = True
+				grid[y][x]['is_boundary'] = True
 				continue
 
 			# west is lower
-			if x - 1 >= 0 and grid[y][x - 1]["topography"] <= this_number:
+			if x - 1 >= 0 and grid[y][x - 1]['topography'] <= this_number:
 				continue
 
 			# east is lower
-			if x + 1 < width and grid[y][x + 1]["topography"] <= this_number:
+			if x + 1 < width and grid[y][x + 1]['topography'] <= this_number:
 				continue
 
 			# north is lower
-			if y - 1 >= 0 and grid[y - 1][x]["topography"] <= this_number:
+			if y - 1 >= 0 and grid[y - 1][x]['topography'] <= this_number:
 				continue
 
 			# south is lower
-			if y + 1 < height and grid[y + 1][x]["topography"] <= this_number:
+			if y + 1 < height and grid[y + 1][x]['topography'] <= this_number:
 				continue
 
 			# still here -> must be a low point
-			grid[y][x]["is_low_point"] = True
+			grid[y][x]['is_low_point'] = True
 			low_points.append(grid[y][x])
 
 	return grid, low_points
@@ -169,27 +169,27 @@ def add_to_basin(grid, cell, basin):
 		return basin
 	else:
 		basin.append(cell)
-		x = cell["x"]
-		y = cell["y"]
+		x = cell['x']
+		y = cell['y']
 
 		# west
-		if x - 1 >= 0 and not grid[y][x - 1]["is_boundary"]:
+		if x - 1 >= 0 and not grid[y][x - 1]['is_boundary']:
 			basin = add_to_basin(grid, grid[y][x - 1], basin)
 
 		# east
-		if x + 1 < width and not grid[y][x + 1]["is_boundary"]:
+		if x + 1 < width and not grid[y][x + 1]['is_boundary']:
 			basin = add_to_basin(grid, grid[y][x + 1], basin)
 
 		# north
-		if y - 1 >= 0 and not grid[y - 1][x]["is_boundary"]:
+		if y - 1 >= 0 and not grid[y - 1][x]['is_boundary']:
 			basin = add_to_basin(grid, grid[y - 1][x], basin)
 
 		# south
-		if y + 1 < height and not grid[y + 1][x]["is_boundary"]:
+		if y + 1 < height and not grid[y + 1][x]['is_boundary']:
 			basin = add_to_basin(grid, grid[y + 1][x], basin)
 
 		return basin
 
 
 
-print(multiply_3_largest_basins(data))
+# print(multiply_3_largest_basins(data))
