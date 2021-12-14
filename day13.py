@@ -68,7 +68,6 @@ def display_dots(dots):
 		grid += '\n'
 		x = 0
 		while x <= width:
-			print(x, y)
 			if [x,y] in dots:
 				grid += '#'
 			else:
@@ -79,4 +78,5 @@ def display_dots(dots):
 	return grid
 
 
-print(display_dots(get_paper_after_folds(dots, instructions, len(instructions))['dots']))
+
+# print(display_dots(get_paper_after_folds(dots, instructions, len(instructions))['dots']))
